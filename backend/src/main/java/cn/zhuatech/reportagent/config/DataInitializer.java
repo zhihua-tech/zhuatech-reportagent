@@ -1,0 +1,11 @@
+/* Copyright 2026 上海如静知华信息科技有限公司 */
+package cn.zhuatech.reportagent.config;
+import cn.zhuatech.reportagent.model.*; import cn.zhuatech.reportagent.repository.*; import org.springframework.boot.CommandLineRunner; import org.springframework.context.annotation.*; import org.springframework.security.crypto.password.PasswordEncoder; import java.time.LocalDate; import java.util.List;
+@Configuration public class DataInitializer {
+ @Bean CommandLineRunner seed(OperatingUnitRepository units,WorkRecordRepository records,ResourceRegisterRepository resources,ReviewRecordRepository reviews,UserRepository users,PasswordEncoder encoder){return args->{if(units.count()>0)return;
+  OperatingUnit first=units.save(new OperatingUnit("RPT-BIZ","经营报告组","经营管理中心",1800)),second=units.save(new OperatingUnit("RPT-METRIC","指标治理组","数据中心",1400)),third=units.save(new OperatingUnit("RPT-FIN","财务分析组","财务中心",1200));
+  WorkRecord a=records.save(new WorkRecord("RPT-260808-018","REPORT-WEEKLY","第 32 周经营例会报告",first,32,23,3,LocalDate.now(),WorkRecord.Status.RELEASED,"METRIC-V8")); WorkRecord b=records.save(new WorkRecord("RPT-260808-012","REPORT-MONTHLY","七月管理层经营报告",third,28,28,0,LocalDate.now(),WorkRecord.Status.COMPLETED,"METRIC-V7")); WorkRecord c=records.save(new WorkRecord("RPT-260808-021","REPORT-REGION","华东区域销售复盘",second,24,12,2,LocalDate.now().plusDays(2),WorkRecord.Status.RUNNING,"METRIC-V8"));
+  resources.saveAll(List.of(new ResourceRegister("RPT-METRIC-01","认证经营指标目录",second,ResourceRegister.Status.RUNNING,97),new ResourceRegister("RPT-SNAPSHOT-02","经营数据快照服务",first,ResourceRegister.Status.RUNNING,95),new ResourceRegister("RPT-GUARD-03","敏感信息发布审查器",third,ResourceRegister.Status.ALARM,82)));
+  reviews.saveAll(List.of(new ReviewRecord("REV-RPT-028",a,"指标新鲜度",32,3,ReviewRecord.Result.PENDING,"程砚"),new ReviewRecord("REV-RPT-017",b,"报告准确性",28,0,ReviewRecord.Result.PASSED,"叶舟"),new ReviewRecord("REV-RPT-039",c,"财务敏感",20,2,ReviewRecord.Result.FAILED,"闻溪")));
+  String demo=encoder.encode("Demo@2026"); users.saveAll(List.of(new UserAccount("operator",demo,"叶舟",UserAccount.Role.DOMAIN_USER,"RPT-BIZ"),new UserAccount("planner",demo,"程砚",UserAccount.Role.DOMAIN_OPERATOR,null),new UserAccount("quality",demo,"指标治理负责人",UserAccount.Role.QUALITY,null),new UserAccount("admin",encoder.encode("ZhuaTech@2026"),"系统管理员",UserAccount.Role.ADMIN,null)));
+ };}}
