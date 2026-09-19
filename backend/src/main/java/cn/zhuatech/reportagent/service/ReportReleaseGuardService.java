@@ -8,9 +8,16 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/** 经营报告发布门禁：过期指标、敏感财务信息和未确认结论禁止发布。 */
+/**
+ * 经营报告发布门禁：过期指标、敏感财务信息和未确认结论禁止发布。
+ *
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class ReportReleaseGuardService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record ReleaseRequest(
             @NotBlank String reportName,
             @Min(1) @Max(1000) int metricCount,
@@ -18,12 +25,18 @@ public class ReportReleaseGuardService {
             boolean containsSensitiveFinance,
             boolean metricOwnerApproved) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record ReleaseDecision(
             boolean publishAllowed,
             String route,
             int freshness,
             List<String> controls) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public ReleaseDecision inspect(ReleaseRequest request) {
         int freshness = Math.max(0,
                 100 - request.staleMetricCount() * 100 / request.metricCount());

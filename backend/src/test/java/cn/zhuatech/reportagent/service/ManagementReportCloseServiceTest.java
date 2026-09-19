@@ -5,9 +5,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 class ManagementReportCloseServiceTest {
     private final ManagementReportCloseService service = new ManagementReportCloseService();
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void publishesOnlyAfterAllCloseControlsPass() {
         var result = service.assess(new ManagementReportCloseService.CloseRequest(
@@ -19,6 +25,9 @@ class ManagementReportCloseServiceTest {
         assertThat(result.actions()).isEmpty();
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void blocksReportWithUnreconciledSourcesAndUnexplainedVariance() {
         var result = service.assess(new ManagementReportCloseService.CloseRequest(

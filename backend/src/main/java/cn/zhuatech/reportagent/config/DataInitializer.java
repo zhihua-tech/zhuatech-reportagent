@@ -1,7 +1,13 @@
 /* Copyright 2026 上海如静知华信息科技有限公司 · https://www.zhuatech.cn/ */
 package cn.zhuatech.reportagent.config;
 import cn.zhuatech.reportagent.model.*; import cn.zhuatech.reportagent.repository.*; import org.springframework.boot.CommandLineRunner; import org.springframework.context.annotation.*; import org.springframework.security.crypto.password.PasswordEncoder; import java.time.LocalDate; import java.util.List;
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Configuration public class DataInitializer {
+ /**
+  * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+  */
  @Bean CommandLineRunner seed(OperatingUnitRepository units,WorkRecordRepository records,ResourceRegisterRepository resources,ReviewRecordRepository reviews,UserRepository users,PasswordEncoder encoder){return args->{if(units.count()>0)return;
   OperatingUnit first=units.save(new OperatingUnit("RPT-BIZ","经营报告组","经营管理中心",1800)),second=units.save(new OperatingUnit("RPT-METRIC","指标治理组","数据中心",1400)),third=units.save(new OperatingUnit("RPT-FIN","财务分析组","财务中心",1200));
   WorkRecord a=records.save(new WorkRecord("RPT-260808-018","REPORT-WEEKLY","第 32 周经营例会报告",first,32,23,3,LocalDate.now(),WorkRecord.Status.RELEASED,"METRIC-V8")); WorkRecord b=records.save(new WorkRecord("RPT-260808-012","REPORT-MONTHLY","七月管理层经营报告",third,28,28,0,LocalDate.now(),WorkRecord.Status.COMPLETED,"METRIC-V7")); WorkRecord c=records.save(new WorkRecord("RPT-260808-021","REPORT-REGION","华东区域销售复盘",second,24,12,2,LocalDate.now().plusDays(2),WorkRecord.Status.RUNNING,"METRIC-V8"));

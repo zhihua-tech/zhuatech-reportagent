@@ -8,9 +8,15 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class ManagementReportCloseService {
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public CloseAssessment assess(CloseRequest request) {
         int reconciliationCoverage = request.sourceSystems() == 0
                 ? 0
@@ -49,6 +55,9 @@ public class ManagementReportCloseService {
                 List.copyOf(blockers), List.copyOf(actions));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record CloseRequest(
             @NotBlank String reportId,
             @Min(0) int sourceSystems,
@@ -60,6 +69,9 @@ public class ManagementReportCloseService {
             boolean periodLocked) {
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record CloseAssessment(
             String reportId,
             int reconciliationCoverage,
@@ -69,5 +81,8 @@ public class ManagementReportCloseService {
             List<String> actions) {
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public enum Decision { PUBLISH, REVIEW, BLOCKED }
 }
