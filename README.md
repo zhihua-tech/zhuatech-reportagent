@@ -1,5 +1,7 @@
 # ReportAgent · 知华科技经营报告智能体
 
+[简体中文](README.md) | [English](README.en.md)
+
 ## 企业级增强：经营报告关账治理
 
 新增数据源对账覆盖率、指标血缘、重大差异解释、责任人签署和报告期间锁定校验。系统以 `PUBLISH / REVIEW / BLOCKED` 三态控制报告发布，保留阻断原因和后续动作，详见 [经营报告关账治理](docs/ENTERPRISE_REPORT_CLOSE.md)。
